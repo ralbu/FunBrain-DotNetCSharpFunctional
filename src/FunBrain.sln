@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunBrainApi", "..\FunBrainApi\FunBrainApi.csproj", "{0EDBAA4D-E12D-432C-9A21-53C7C1D901E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunBrainApi", "..\FunBrainApi\FunBrainApi.csproj", "{0EDBAA4D-E12D-432C-9A21-53C7C1D901E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functional", "Functional\Functional.csproj", "{5B54D2A9-4F39-4059-A66A-113E06934BAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functional", "Functional\Functional.csproj", "{5B54D2A9-4F39-4059-A66A-113E06934BAA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunBrainInfrastructure", "FunBrainInfrastructure\FunBrainInfrastructure.csproj", "{B3E0140D-A7D3-4918-BAD9-0B2FA7499B32}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunBrainDomain", "FunBrainDomain\FunBrainDomain.csproj", "{B39BC240-D077-4C7A-9078-1B419EDC9DE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunBrainSqlPersistence", "FunBrainSqlPersistence\FunBrainSqlPersistence.csproj", "{33CA9C13-0A67-40BF-8040-2A9984A14903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{5B54D2A9-4F39-4059-A66A-113E06934BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B54D2A9-4F39-4059-A66A-113E06934BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B54D2A9-4F39-4059-A66A-113E06934BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3E0140D-A7D3-4918-BAD9-0B2FA7499B32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3E0140D-A7D3-4918-BAD9-0B2FA7499B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3E0140D-A7D3-4918-BAD9-0B2FA7499B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3E0140D-A7D3-4918-BAD9-0B2FA7499B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B39BC240-D077-4C7A-9078-1B419EDC9DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B39BC240-D077-4C7A-9078-1B419EDC9DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B39BC240-D077-4C7A-9078-1B419EDC9DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B39BC240-D077-4C7A-9078-1B419EDC9DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CA9C13-0A67-40BF-8040-2A9984A14903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CA9C13-0A67-40BF-8040-2A9984A14903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CA9C13-0A67-40BF-8040-2A9984A14903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CA9C13-0A67-40BF-8040-2A9984A14903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
