@@ -8,6 +8,10 @@ namespace Functional
 {
     public static partial class F
     {
+        //todo: move 
+        public static IEnumerable<R> Map<T, R>(this IEnumerable<T> ts, Func<T, R> f)
+            => ts.Select(f);
+
         public static Unit Unit() => default(Unit);
 
         // function manipulation 
