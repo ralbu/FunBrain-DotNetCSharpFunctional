@@ -9,8 +9,11 @@ namespace Functional
     public static partial class F
     {
         //todo: move 
-        public static IEnumerable<R> Map<T, R>(this IEnumerable<T> ts, Func<T, R> f)
-            => ts.Select(f);
+//        public static IEnumerable<R> Map<T, R>(this IEnumerable<T> ts, Func<T, R> f)
+//            => ts.Select(f);
+//
+//        public static Option<R> Map<T, R>(this Option<T> o, Func<T, R> f) 
+//            => o.IsSome() ? Some(f) : None
 
         public static Unit Unit() => default(Unit);
 

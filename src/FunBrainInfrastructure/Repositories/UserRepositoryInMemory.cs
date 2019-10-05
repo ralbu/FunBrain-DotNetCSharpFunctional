@@ -7,11 +7,12 @@ using FunBrainDomain;
 using FunBrainInfrastructure.Models;
 using Functional;
 using Functional.Option;
-    using static Functional.F;
+using Unit = System.ValueTuple;
+using static Functional.F;
 
 namespace FunBrainInfrastructure.Repositories
 {
-    public class UserRepositoryInMemory : IUserRepository
+    public class UserRepositoryInMemory //: IUserRepository
     {
         public IList<User> Users { get; set; } = new List<User>();
 
@@ -41,7 +42,12 @@ namespace FunBrainInfrastructure.Repositories
             return Users.FirstOrDefault(u => u.Id == id);
         }
 
-        public User Create(UserCreate newUser)
+        public Either<Error, User> Create(UserCreate newUser)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User CreateOld(UserCreate newUser)
         {
             var createdUser = new User
             {
@@ -76,7 +82,7 @@ namespace FunBrainInfrastructure.Repositories
             return userToUpdate;
         }
 
-        public bool Delete(int userId)
+        public bool DeleteOld(int userId)
         {
             foreach (var user in Users)
             {
@@ -88,6 +94,16 @@ namespace FunBrainInfrastructure.Repositories
             }
 
             return false;
+        }
+
+        public Either<Error, Unit>Delete(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Option<bool> DeleteWithOption(int userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

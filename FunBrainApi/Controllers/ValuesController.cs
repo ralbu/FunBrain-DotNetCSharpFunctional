@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Functional;
+//using Functional;
 using Microsoft.AspNetCore.Mvc;
+//using static Functional.F;
 
 namespace FunBrainApi.Controllers
 {
@@ -19,9 +22,13 @@ namespace FunBrainApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult Get(int id)
         {
-            return "value";
+//            var list = Enumerable.Range(1, 5);
+//
+//            var multiplier = list.Map(x => x + id);
+
+            return Ok();
         }
 
         // POST api/values
@@ -41,5 +48,8 @@ namespace FunBrainApi.Controllers
         public void Delete(int id)
         {
         }
+
+
     }
+
 }
