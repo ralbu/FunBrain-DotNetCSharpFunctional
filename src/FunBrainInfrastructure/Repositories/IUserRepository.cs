@@ -11,12 +11,9 @@ namespace FunBrainInfrastructure.Repositories
         IList<User> GetAll();
         Option<User> GetUserBy(int id);
 
-//        User CreateOld(UserCreate newUser);
-
         Either<Error, User> Create(UserCreate newUser);
 
         User Update(UserUpdate updateUser);
-        bool DeleteOld(int userId);
 
         Either<Error, Unit> Delete(int userId);
         Option<bool> DeleteWithOption(int userId);

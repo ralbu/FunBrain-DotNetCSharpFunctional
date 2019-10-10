@@ -1,18 +1,11 @@
-﻿using System;
-using FunBrainInfrastructure;
-using FunBrainInfrastructure.Models;
+﻿using FunBrainInfrastructure.Models;
 using FunBrainInfrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Functional;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Unit = System.ValueTuple;
-using static Functional.F;
 
 namespace FunBrainApi.Controllers
 {
-
     [Route("api/users")]
-    public class UsersController: Controller
+    public class UsersController : Controller
     {
         private readonly IUserRepository _userRepository;
 
@@ -26,13 +19,6 @@ namespace FunBrainApi.Controllers
         public IActionResult GetUsers()
             => Ok(_userRepository.GetAll());
 
-//        [HttpGet]
-//        public IActionResult GetUsers()
-//            => _userRepository.Get()
-//                .Match<IActionResult>(
-//                    () => NotFound(),
-//                    (result) => Ok(result));
-
 
         [HttpGet("{id}", Name = "GetUser")]
         public IActionResult GetUserBy(int id)
@@ -44,64 +30,51 @@ namespace FunBrainApi.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateUser(UserCreate newUser) 
-        => _userRepository.Create(newUser)
-            .Match<IActionResult>(
-                a => BadRequest(a),
-                (s) => Ok(s));
+        public IActionResult CreateUser([FromBody] UserCreate newUser)
+            => _userRepository.Create(newUser)
+                .Match<IActionResult>(
+                    a => BadRequest(a),
+                    user => CreatedAtRoute("GetUser", new {id = user.Id}, user));
 
+        //TODO: this needs a different approach
+        [HttpPost]
+        public IActionResult UpdateUser([FromBody] UserUpdate updateUser)
+        {
+            if (updateUser == null) // or user name or email is empty
+            {
+                return BadRequest();
+            }
+            if (updateUser.Id == 1) // not in the database
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id) =>
             _userRepository.DeleteWithOption(id).Match<IActionResult>(
                 () => NotFound(),
                 (val) => Ok());
+    }
 
-        /*
-        public void Abc(int id)
+    public class ResultDto<T>
+    {
+        public bool Succeeded { get; }
+        public bool Failed => !Succeeded;
+
+        public T Data { get; }
+        public Error Error { get; }
+
+        public ResultDto(T data)
         {
-            var t = _userRepository.DeleteWithOption(id)
-                .Map()
+            Succeeded = true;
+            Data = data;
         }
-*/
-
-/*
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public ResultDto(Error error)
         {
-            var result0 = _userRepository.DeleteWithOption(id);
-
-            var r = _userRepository.DeleteWithOption(id).Match(
-                () => (StatusCodeResult)NotFound(),
-                (val) => (StatusCodeResult) Ok());
-
-            return r;
+            Error = error;
         }
-
-*/
-/*
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-            => _userRepository.Delete(id)
-                .Match<IActionResult>(
-                Right: _ => Ok(),
-                Left: BadRequest);
-*/
-
-
-            //=> ValidateUserUsedInGame(id)
-             //   .Bind(_userRepository.Delete);
-
-        private Either<Error, Unit> ValidateUserUsedInGame(int userId)
-        {
-            if (userId == 1)
-            {
-                return Errors.UserUsedInGame;
-            }
-
-            return Unit();
-        }
-
-
     }
 }

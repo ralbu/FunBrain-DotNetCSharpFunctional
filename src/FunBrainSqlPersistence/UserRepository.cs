@@ -31,20 +31,7 @@ namespace FunBrainSqlPersistence
 
             return users;
         }
-
         
-//        public Option<IList<User>> Get()
-//        {
-//            var users = new List<User>();
-//
-//            string sql = "select * from Users";
-//            using (var cn = new SqlConnection(cnString))
-//            {
-//                users = cn.Query<User>(sql).ToList();
-//            }
-//
-//            return users;
-//        }
         public Option<User> GetUserBy(int id)
         {
             User user;
@@ -69,12 +56,12 @@ namespace FunBrainSqlPersistence
                 return Errors.UserNameEmpty;
             }
 
-            var sql = "insert Users Values (@name, @email) ";
+            var sql = "insert Users Values (@name, @email); SELECT CAST(SCOPE_IDENTITY() as int) ";
 
             var userId = 0;
             using (var cn = new SqlConnection(cnString))
             {
-                userId = cn.Execute(sql, new { Name = newUser.Name, email = newUser.Email});
+                userId = cn.QuerySingle<int>(sql, new { Name = newUser.Name, email = newUser.Email});
             }
 
             return new User
@@ -86,7 +73,6 @@ namespace FunBrainSqlPersistence
         }
 
         public User Update(UserUpdate updateUser) { return null; }
-        public bool DeleteOld(int userId) { return false; }
 
         public Either<Error, Unit> Delete(int userId)
         {
